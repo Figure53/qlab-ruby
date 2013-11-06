@@ -1,4 +1,5 @@
 module OSC
+  # SLIP encoding constants.
   module TCP
     CHAR_END     = 0300 # indicates end of packet
     CHAR_ESC     = 0333 # indicates byte stuffing

@@ -1,13 +1,14 @@
 module QLab
   class Cue < Communicator
-    attr_accessor :data, :workspace
+    attr_accessor :data
 
+    # Load a cue with the attributes given in `data`
     def initialize data, cue_list
       self.data = data
       @cue_list = cue_list
     end
 
-    # send command
+    # All cue commands for all cue types as listed in Figure53 QLab OSC Reference
     Commands::ALL_CUES.each do |command|
       define_method(command.to_sym) do |*args|
         if args.size > 0
@@ -38,18 +39,17 @@ module QLab
       end
     end
 
-    def workspace
-      @cue_list.workspace
-    end
-
-    def connection
-      workspace.connection
-    end
-
+    # The cue's `uniqueID`.
     def id
       data['uniqueID']
     end
 
+    # Check whether this cue has nested cues.
+    def has_cues?
+      cues.size > 0
+    end
+
+    # Get the list of nested cues.
     def cues
       if data['cues'].nil?
         []
@@ -58,17 +58,24 @@ module QLab
       end
     end
 
-    def has_cues?
-      cues.size > 0
-    end
-
-    # another Cue
+    # Compare with another Cue.
     def ==(other)
       if other.is_a?(Cue)
         self.data = other.data
       else
         false
       end
+    end
+
+    # A reference to the cue's workspace.
+    def workspace
+      @cue_list.workspace
+    end
+
+    protected
+
+    def connection
+      workspace.connection
     end
 
     private

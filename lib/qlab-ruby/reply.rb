@@ -1,16 +1,8 @@
 require 'json'
 
 module QLab
+  # QLab OSC reply unpacker.
   class Reply < Struct.new(:osc_message)
-    def json
-      @json ||= begin
-                  JSON.parse(osc_message.to_a.first)
-                rescue => ex
-                  puts ex.message
-                  {}
-                end
-    end
-
     def address
       @address ||= json['address']
     end
@@ -19,12 +11,16 @@ module QLab
       @data ||= json['data']
     end
 
+    def status
+      @status ||= json['status']
+    end
+
     def has_data?
       !data.nil?
     end
 
-    def status
-      @status ||= json['status']
+    def has_status?
+      !status.nil?
     end
 
     def ok?
@@ -38,5 +34,18 @@ module QLab
     def to_s
       "<QLab::Reply address:'#{address}' status:'#{status}' data:#{data.inspect}>"
     end
+
+    protected
+
+    # Actually perform the message unpacking
+    def json
+      @json ||= begin
+                  JSON.parse(osc_message.to_a.first)
+                rescue => ex
+                  puts ex.message
+                  {}
+                end
+    end
+
   end
 end

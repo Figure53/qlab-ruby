@@ -46,6 +46,7 @@ module QLab
   class CueList
     attr_accessor :data
 
+    # Load a cue list with the attributes given in `data`
     def initialize data, workspace
       self.data = data
       @workspace = workspace

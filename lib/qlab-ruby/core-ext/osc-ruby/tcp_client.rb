@@ -1,4 +1,4 @@
-# An OSC TCP client sends and receives on the same socket using the SLIP protocol.
+# A responsive OSC TCP client that sends and receives OSC messages on a single socket using the SLIP protocol.
 #
 # http://www.ietf.org/rfc/rfc1055.txt
 
@@ -21,9 +21,10 @@ module OSC
         @socket.closed?
       end
 
-      # send an OSC::Message
+      # Send an OSC::Message and handle the response if one is given.
       def send msg
-        @sending_socket.send msg
+        @sending_socket.send(msg)
+
         if block_given? || @handler
           messages = response
           if !messages.nil?

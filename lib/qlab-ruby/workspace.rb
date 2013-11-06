@@ -7,6 +7,7 @@ module QLab
   class Workspace < Communicator
     attr_accessor :data, :passcode
 
+    # Load a workspace with the attributes given in `data`
     def initialize data, machine
       @machine = machine
       self.data = data
@@ -56,7 +57,11 @@ module QLab
 
     def refresh
       if passcode?
-        args = [workspace_command('connect'), passcode]
+        if passcode.nil?
+          raise WorkspaceConnectionError.new("Workspace '#{ name }' requires a passcode.")
+        end
+
+        args = [workspace_command('connect'), ('%04i' % passcode)]
       else
         args = [workspace_command('connect')]
       end
@@ -100,4 +105,6 @@ module QLab
       cues
     end
   end
+
+  class WorkspaceConnectionError < Exception; end
 end

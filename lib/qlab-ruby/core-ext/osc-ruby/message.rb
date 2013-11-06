@@ -1,4 +1,6 @@
 module OSC
+  # Reopen the osc-ruby Message class to provide additional methods to support
+  # QLab's use of OSC.
   class Message
     def has_arguments?
       to_a.size > 0
