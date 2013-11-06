@@ -1,6 +1,7 @@
 # A responsive OSC TCP client that sends and receives OSC messages on a single socket using the SLIP protocol.
 #
 # http://www.ietf.org/rfc/rfc1055.txt
+require 'socket'
 
 module OSC
   module TCP
@@ -10,7 +11,7 @@ module OSC
         @port = port
         @handler = handler
         @socket = TCPSocket.new host, port
-        @sending_socket = SendingSocket.new @socket
+        @sending_socket = OSC::TCP::SendingSocket.new @socket
       end
 
       def close

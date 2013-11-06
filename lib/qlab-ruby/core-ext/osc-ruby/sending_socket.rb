@@ -1,6 +1,6 @@
 module OSC
   module TCP
-    # A wrapper around an open TCP socket providing SLIP encoding for raw
+    # A wrapper around an open TCP socket providing SLIP encoding for outbound
     # messages.
     class SendingSocket
       def initialize socket

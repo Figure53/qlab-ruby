@@ -2,6 +2,7 @@ module QLab
   # An abstract class providing communication behavior for objects that need to
   # interact with QLab.
   class Communicator
+
     def send_message osc_address, *osc_arguments
       osc_address = format_osc_address(osc_address)
 
