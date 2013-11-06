@@ -7,10 +7,10 @@ Gem::Specification.new do |gem|
   gem.name          = "qlab-ruby"
   gem.version       = QLab::VERSION
   gem.authors       = ["Adam Bachman"]
-  gem.email         = ["adam.bachman@gmail.com"]
+  gem.email         = ["adam@figure53.com"]
   gem.description   = %q{Interact with QLab in Ruby.}
   gem.summary       = %q{Interact with QLab in Ruby.}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/Figure53/qlab-ruby"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
