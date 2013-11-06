@@ -1,5 +1,5 @@
 module QLab
-  #  All return an array of cue dictionaries:
+  #  An array of cue objects:
   #
   #  [
   #      {
@@ -13,7 +13,7 @@ module QLab
   #      }
   #  ]
   #
-  #  If the cue is a group, the dictionary will include an array of cue dictionaries for all children in the group:
+  #  If a given cue is a group, it will include the nested cues:
   #
   #  [
   #      {
@@ -27,21 +27,6 @@ module QLab
   #          "cues": [ { }, { }, { } ]
   #      }
   #  ]
-  #
-  #  [{\"number\":\"\",
-  #    \"uniqueID\":\"1\",
-  #    \"cues\":[{\"number\":\"1\",
-  #    \"uniqueID\":\"2\",
-  #    \"flagged\":false,
-  #    \"type\":\"Wait\",
-  #    \"colorName\":\"none\",
-  #    \"name\":\"boom\",
-  #    \"armed\":true}],
-  #    \"flagged\":false,
-  #    \"type\":\"Group\",
-  #    \"colorName\":\"none\",
-  #    \"name\":\"Main Cue List\",
-  #    \"armed\":true}]
 
   class CueList
     attr_accessor :data

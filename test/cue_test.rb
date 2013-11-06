@@ -37,9 +37,5 @@ class CueTest < Minitest::Test
     cue.name = new_name
     assert_equal new_name, cue.name
   end
-
-
-
-
 end
 

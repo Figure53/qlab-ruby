@@ -1,7 +1,6 @@
 module QLab
+  # All commands QLab accepts
   module Commands
-    # All Commands
-
     MACHINE = %w(
       alwaysReply
       connect
