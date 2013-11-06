@@ -18,4 +18,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_runtime_dependency 'osc-ruby'
+
+  gem.add_development_dependency 'rdoc'
 end
