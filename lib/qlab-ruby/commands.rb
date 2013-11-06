@@ -5,6 +5,7 @@ module QLab
     MACHINE = %w(
       alwaysReply
       connect
+      version
       workingDirectory
       workspaces
     )
