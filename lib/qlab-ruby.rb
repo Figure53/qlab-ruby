@@ -11,17 +11,20 @@ module QLab
   autoload :Workspace, 'qlab-ruby/workspace'
 
   class << self
-    attr_accessor :machine, :connection
-
     def connect machine_address='localhost', port=53000
-      # global QLab connection
-      machine = Machine.new(machine_address, port)
-
-      if machine.connected?
-        machine.alwaysReply = 1
+      begin
+        # global QLab connection
+        new_machine = Machine.new(machine_address, port)
+      rescue Errno::ECONNREFUSED
+        puts "Failed to connect to QLab machine at #{machine_address}:#{port}, please make sure your values are correct and QLab is running."
+        raise
       end
 
-      machine
+      if new_machine.connected?
+        new_machine.alwaysReply = 1
+      end
+
+      new_machine
     end
 
     def debug msg
