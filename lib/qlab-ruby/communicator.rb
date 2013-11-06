@@ -1,6 +1,7 @@
 module QLab
+  # An abstract class providing communication behavior for objects that need to
+  # interact with QLab.
   class Communicator
-    # classes extending Communicator must provide
     def send_message osc_address, *osc_arguments
       osc_address = format_osc_address(osc_address)
 
@@ -23,8 +24,11 @@ module QLab
         if q_reply.has_data?
           QLab.debug "[Action send_message] single response has data: #{q_reply.data.inspect}"
           q_reply.data
+        elsif q_reply.has_status?
+          QLab.debug "[Action send_message] single response has status: #{q_reply.status.inspect}"
+          q_reply.status
         else
-          QLab.debug "[Action send_message] single response has no data: #{q_reply.inspect}"
+          QLab.debug "[Action send_message] single response has no data or status: #{q_reply.inspect}"
           q_reply
         end
       else
