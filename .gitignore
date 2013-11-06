@@ -15,4 +15,7 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
+
+# local concerns
 .DS_Store
+.rake_tasks~
