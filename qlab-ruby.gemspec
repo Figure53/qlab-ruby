@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Interact with QLab in Ruby.}
   gem.summary       = %q{Interact with QLab in Ruby.}
   gem.homepage      = "https://github.com/Figure53/qlab-ruby"
+  gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
