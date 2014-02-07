@@ -90,10 +90,21 @@ module QLab
       end
     end
 
+    def new_cue type
+      cue_id = send_message new_cue_command, type
+      unless cue_id == 'error'
+        find_cue({ :id => cue_id })
+      end
+    end
+
     private
 
     def workspace_command command
       "/workspace/#{id}/#{ command }"
+    end
+
+    def new_cue_command
+      "/workspace/#{id}/new"
     end
 
     def load_cues parent_cue, cues
