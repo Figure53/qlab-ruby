@@ -32,4 +32,14 @@ class WorkspaceTest < Minitest::Test
     refute workspace.find_cue(number: 'asdf asdf asdf asdf asdf')
     refute workspace.find_cue(name: 'asdf asdf asdf asdf asdf')
   end
+
+  def test_new_cue
+    workspace = @machine.workspaces.first
+    cue_count = workspace.cues.size
+
+    cue = workspace.new_cue 'audio'
+
+    assert_equal workspace.find_cue(id: cue.id), cue
+    assert_equal cue_count + 1, workspace.cues.size
+  end
 end
